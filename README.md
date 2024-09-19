@@ -1,22 +1,11 @@
 # Raspberry Pi RP2040 Template
 Raspberry Pi RP2040 Template for fast and easy development structure
 
-## Pico SDK
+## Instlall Pico SDK
+
+### MacOS
 
 ```bash
-git clone https://github.com/raspberrypi/pico-sdk.git
-cd pico-sdk
-git submodule update --init
-
-## Add pico-sdk Path to your environment
-echo export PICO_SDK_PATH=$PWD >> ~/.bashrc
-```
-
-## For MacOS
-
-```bash
-brew install cmake arm-none-eabi-gcc
-
 git clone https://github.com/raspberrypi/pico-sdk.git
 cd pico-sdk
 git submodule update --init
@@ -26,8 +15,25 @@ echo export PICO_SDK_PATH=$PWD >> ~/.zshrc
 source ~/.zshrc
 ```
 
+### Linux
+
+```bash
+git clone https://github.com/raspberrypi/pico-sdk.git
+cd pico-sdk
+git submodule update --init
+
+## Add pico-sdk Path to your environment
+echo export PICO_SDK_PATH=$PWD >> ~/.bashrc
+source ~/.bashrc
+```
 
 ## Packages
+
+### MacOS
+```bash
+brew install cmake
+brew install armmbed/formulae/arm-none-eabi-gcc
+```
 
 ### Debian based
 ```bash
@@ -49,6 +55,9 @@ yay -S picotool openocd-picoprobe
         5. be happy!
 
 ### Programming examples on your Pico
+
+Change pico_w to pico in the 4th line of `CMakeLists.txt`
+
 First of all check the `CMakeLists.txt` File, if the desired subdirectories are included (e.g. `add_subdirectory(blink)`) and execute the following commands in this repository:
 ```bash
 rm build -rf
@@ -58,6 +67,26 @@ make
 ```
 
 Afterwards you can mount your Pico as described in Chapter 3.2.2 of "Getting Started with Raspberry Pi Pico" [1]. _"Removing power from the board does not remove the code. When the board is reattached to power, the code you have just loaded will begin running again. If you want to upload new code to the board (and overwrite whatever was already on there), press and hold the BOOTSEL button when applying power to put the board into Mass Storage mode."_
+
+Press the white button on the pico while connecting it to your computer.
+
+#### MacOS
+
+```bash
+diskutil list
+sudo diskutil mountDisk /dev/disk8
+ls /Volumes/
+```
+
+View if the RPI-RP2 Folder is present.
+
+```bash
+sudo cp blink/blink.uf2 /Volumes/RPI-RP2/
+```
+
+The device will unmount automatically after the copy process.
+
+#### Linux
 
 ```bash
 $ sudo dmesg | tail
