@@ -12,11 +12,26 @@ git submodule update --init
 echo export PICO_SDK_PATH=$PWD >> ~/.bashrc
 ```
 
+## For MacOS
+
+```bash
+brew install cmake arm-none-eabi-gcc
+
+git clone https://github.com/raspberrypi/pico-sdk.git
+cd pico-sdk
+git submodule update --init
+
+## Add pico-sdk Path to your environment
+echo export PICO_SDK_PATH=$PWD >> ~/.zshrc
+source ~/.zshrc
+```
+
+
 ## Packages
 
 ### Debian based
 ```bash
-apt update && apt install -y cmake make gcc g++ openssl libssl-dev cmake gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib 
+apt update && apt install -y cmake make gcc g++ openssl libssl-dev cmake gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib
 ```
 
 ### Arch
@@ -90,4 +105,3 @@ The FreeRTOS Examples need the Kernel Sources, so don't forget to load the submo
 * https://github.com/cniles/picow-iot
 * https://www.nongnu.org/lwip/2_1_x/group__mqtt.html
 * https://www.elektronik-kompendium.de/sites/raspberry-pi/2709071.htm
-
